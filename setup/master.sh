@@ -14,12 +14,25 @@ ftppasswd=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20; echo`
 rpcuser=`< /dev/urandom tr -dc A-Za-z0-9 | head -c15; echo`
 rpcpassword=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20; echo`
 
+
+echo -e \
+'--------------------------------------------'"\n"\
+'Parameter'"\n"\
+'--------------------------------------------'"\n"\
+'chainname='$1"\n"\
+'rpcport='$3"\n"\
+'networkport='$2"\n\n"\
+
+
+
+
+
 bash -e hardening.sh
 bash -e lamp.sh $db_root_pass
 bash -e phpmyadmin.sh
 bash -e ftp.sh $ftpusername $ftppasswd
 bash -e core.sh $rpcuser $rpcpassword $db_admin_user $db_admin_pass
-bash -e configure-yobichain.sh $db_root_pass $db_admin_user $db_admin_pass
+bash -e configure-yobichain.sh $db_root_pass $db_admin_user $db_admin_pass $1 $2 $3
 
 echo -e \
 '--------------------------------------------'"\n"\
