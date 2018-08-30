@@ -6,6 +6,22 @@ db_root_pass=$1
 db_admin_user=$2
 db_admin_pass=$3
 
+chainname=$4
+networkport=$5
+rpcport=$6
+
+echo -e \
+'--------------------------------------------'"\n"\
+'Parameters in the configure-yobichain'"\n"\
+'--------------------------------------------'"\n"\
+'chainname='$4"\n"\
+'rpcport='$6"\n"\
+'networkport='$5"\n\n"\
+
+
+
+
+
 homedir=`su -l $linux_admin_user -c 'cd ~ && pwd'`
 source $homedir/.multichain/$chainname/multichain.conf
 
