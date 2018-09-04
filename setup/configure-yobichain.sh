@@ -6,39 +6,39 @@ db_root_pass=$1
 db_admin_user=$2
 db_admin_pass=$3
 
-chainname=$4
-networkport=$5
-rpcport=$6
+chainName=$4
+networkPort=$5
+rpcPort=$6
 
 echo -e \
 '--------------------------------------------'"\n"\
 'Parameters in the configure-yobichain'"\n"\
 '--------------------------------------------'"\n"\
-'chainname='$4"\n"\
-'rpcport='$6"\n"\
-'networkport='$5"\n\n"\
+'chainName='$4"\n"\
+'rpcPort='$6"\n"\
+'networkPort='$5"\n\n"\
 
 
 
 
 
 homedir=`su -l $linux_admin_user -c 'cd ~ && pwd'`
-source $homedir/.multichain/$chainname/multichain.conf
+source $homedir/.multichain/$chainName/multichain.conf
 
 user_id=1
 user_password_hash=`php -r 'echo password_hash("'$default_user_pass'",PASSWORD_BCRYPT);'`
 
-user_addr=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getnewaddress", "params": [] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcport | jq -r '.result'`
+user_addr=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getnewaddress", "params": [] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcPort | jq -r '.result'`
 
-user_pubkey=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "validateaddress", "params": ["'$user_addr'"] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcport | jq -r '.result.pubkey'`
+user_pubkey=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "validateaddress", "params": ["'$user_addr'"] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcPort | jq -r '.result.pubkey'`
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" grant "$user_addr" send,receive,issue > /dev/null 2>/dev/null"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" grant "$user_addr" send,receive,issue > /dev/null 2>/dev/null"
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" grant "$user_addr" file_data.write > /dev/null 2>/dev/null"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" grant "$user_addr" file_details.write > /dev/null 2>/dev/null"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" grant "$user_addr" asset_details.write > /dev/null 2>/dev/null"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" grant "$user_addr" offers_hex.write > /dev/null 2>/dev/null"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" grant "$user_addr" offers_details.write > /dev/null 2>/dev/null"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" grant "$user_addr" file_data.write > /dev/null 2>/dev/null"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" grant "$user_addr" file_details.write > /dev/null 2>/dev/null"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" grant "$user_addr" asset_details.write > /dev/null 2>/dev/null"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" grant "$user_addr" offers_hex.write > /dev/null 2>/dev/null"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" grant "$user_addr" offers_details.write > /dev/null 2>/dev/null"
 
 
 echo ''
