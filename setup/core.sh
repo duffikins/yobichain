@@ -15,7 +15,7 @@ INSTALLER_PATH="`( cd \"$INSTALLER_PATH_RELATIVE\" && pwd )`"
 sudo apt-get -y install pwgen gpw
 source yobichain.conf
 
-# chainname=$1
+# chainName=$1
 rpcuser=$1
 rpcpassword=$2
 db_admin_user=$3
@@ -81,8 +81,8 @@ echo '----------------------------------------'
 echo -e 'CONFIGURING FIREWALL.....'
 echo '----------------------------------------'
 
-sudo ufw allow $networkport
-sudo ufw allow $rpcport
+sudo ufw allow $networkPort
+sudo ufw allow $rpcPort
 sudo ufw allow $explorerport
 sudo ufw allow 21
 
@@ -106,26 +106,26 @@ wget --no-verbose http://www.multichain.com/download/multichain-$multichainVersi
 sudo bash -c 'tar xvf multichain-'$multichainVersion'.tar.gz'
 sudo bash -c 'cp multichain-'$multichainVersion'*/multichain* /usr/local/bin/'
 
-su -l $linux_admin_user -c  'multichain-util create '$chainname $protocol
+su -l $linux_admin_user -c  'multichain-util create '$chainName $protocol
 
-su -l $linux_admin_user -c "sed -ie 's/.*root-stream-open =.*\#/root-stream-open = false     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*mining-requires-peers =.*\#/mining-requires-peers = true     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*initial-block-reward =.*\#/initial-block-reward = 0     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*first-block-reward =.*\#/first-block-reward = -1     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*target-adjust-freq =.*\#/target-adjust-freq = -1     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*max-std-tx-size =.*\#/max-std-tx-size = 100000000     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*max-std-op-returns-count =.*\#/max-std-op-returns-count = 1024     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*max-std-op-return-size =.*\#/max-std-op-return-size = 8388608     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*max-std-op-drops-count =.*\#/max-std-op-drops-count = 100     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*max-std-element-size =.*\#/max-std-element-size = 32768     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*default-network-port =.*\#/default-network-port = '$networkport'     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*default-rpc-port =.*\#/default-rpc-port = '$rpcport'     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c "sed -ie 's/.*chain-name =.*\#/chain-name = '$chainname'     #/g' $homedir/.multichain/$chainname/params.dat"
-su -l $linux_admin_user -c " sed -ie 's/.*protocol-version =.*\#/protocol-version = '$protocol'     #/g' $homedir/.multichain/$chainname/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*root-stream-open =.*\#/root-stream-open = false     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*mining-requires-peers =.*\#/mining-requires-peers = true     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*initial-block-reward =.*\#/initial-block-reward = 0     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*first-block-reward =.*\#/first-block-reward = -1     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*target-adjust-freq =.*\#/target-adjust-freq = -1     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*max-std-tx-size =.*\#/max-std-tx-size = 100000000     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*max-std-op-returns-count =.*\#/max-std-op-returns-count = 1024     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*max-std-op-return-size =.*\#/max-std-op-return-size = 8388608     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*max-std-op-drops-count =.*\#/max-std-op-drops-count = 100     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*max-std-element-size =.*\#/max-std-element-size = 32768     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*default-network-port =.*\#/default-network-port = '$networkPort'     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*default-rpc-port =.*\#/default-rpc-port = '$rpcPort'     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c "sed -ie 's/.*chain-name =.*\#/chain-name = '$chainName'     #/g' $homedir/.multichain/$chainName/params.dat"
+su -l $linux_admin_user -c " sed -ie 's/.*protocol-version =.*\#/protocol-version = '$protocol'     #/g' $homedir/.multichain/$chainName/params.dat"
 
-su -l $linux_admin_user -c "echo rpcuser='$rpcuser' > $homedir/.multichain/$chainname/multichain.conf"
-su -l $linux_admin_user -c "echo rpcpassword='$rpcpassword' >> $homedir/.multichain/$chainname/multichain.conf"
-su -l $linux_admin_user -c 'echo rpcport='$rpcport' >> '$homedir'/.multichain/'$chainname'/multichain.conf'
+su -l $linux_admin_user -c "echo rpcuser='$rpcuser' > $homedir/.multichain/$chainName/multichain.conf"
+su -l $linux_admin_user -c "echo rpcpassword='$rpcpassword' >> $homedir/.multichain/$chainName/multichain.conf"
+su -l $linux_admin_user -c 'echo rpcPort='$rpcPort' >> '$homedir'/.multichain/'$chainName'/multichain.conf'
 
 echo ''
 echo ''
@@ -139,7 +139,7 @@ echo '----------------------------------------'
 echo -e 'RUNNING BLOCKCHAIN.....'
 echo '----------------------------------------'
 
-su -l $linux_admin_user -c 'multichaind '$chainname' -daemon'
+su -l $linux_admin_user -c 'multichaind '$chainName' -daemon'
 
 echo ''
 echo ''
@@ -155,7 +155,7 @@ echo '----------------------------------------'
 
 sleep 6
 
-addr=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getaddresses", "params": [] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcport | jq -r '.result[0]'`
+addr=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getaddresses", "params": [] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcPort | jq -r '.result[0]'`
 
 
 echo ''
@@ -175,27 +175,27 @@ echo '----------------------------------------'
 # CREATE STREAMS
 # ------ -------
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"asset_details\",\"open\":false,\"details\":{\"purpose\":\"Stores the details of assets\"}}]' send"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"asset_details\",\"open\":false,\"details\":{\"purpose\":\"Stores the details of assets\"}}]' send"
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"offers_hex\",\"open\":false,\"details\":{\"purpose\":\"Stores hex data of an atomic exchange\"}}]' send"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"offers_details\",\"open\":false,\"details\":{\"purpose\":\"Stores details of a atomic exchange\"}}]' send"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"offers_hex\",\"open\":false,\"details\":{\"purpose\":\"Stores hex data of an atomic exchange\"}}]' send"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"offers_details\",\"open\":false,\"details\":{\"purpose\":\"Stores details of a atomic exchange\"}}]' send"
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"file_details\",\"open\":false,\"details\":{\"purpose\":\"Stores metadata of files\"}}]' send"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"file_data\",\"open\":false,\"details\":{\"purpose\":\"Stores file content\"}}]' send"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"file_details\",\"open\":false,\"details\":{\"purpose\":\"Stores metadata of files\"}}]' send"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"file_data\",\"open\":false,\"details\":{\"purpose\":\"Stores file content\"}}]' send"
 
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"proof_of_existence\",\"open\":false,\"details\":{\"purpose\":\"Stores Hashes\"}}]' send"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"proof_of_existence\",\"open\":false,\"details\":{\"purpose\":\"Stores Hashes\"}}]' send"
 
 
 # SUBSCRIBE STREAMS
 # --------- -------
 
-su -l $linux_admin_user -c  "multichain-cli "$chainname" subscribe asset_details"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" subscribe offers_hex"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" subscribe offers_details"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" subscribe file_details"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" subscribe file_data"
-su -l $linux_admin_user -c  "multichain-cli "$chainname" subscribe proof_of_existence"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" subscribe asset_details"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" subscribe offers_hex"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" subscribe offers_details"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" subscribe file_details"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" subscribe file_data"
+su -l $linux_admin_user -c  "multichain-cli "$chainName" subscribe proof_of_existence"
 
 echo ''
 echo ''
@@ -225,11 +225,11 @@ cd $webServerActiveDirectory	# Changing current directory to web server's root d
 app_directory=$webServerActiveDirectory'/yobichain-web'
 
 # Configuring Yobichain
-sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' $app_directory/primechain_functions/config.php
+sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainName'";/g' $app_directory/primechain_functions/config.php
 sudo sed -ie 's/self::$PORT =.*;/self::$PORT = "'$explorerport'";/g' $app_directory/primechain_functions/config.php
 sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' $app_directory/primechain_functions/config.php
 sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' $app_directory/primechain_functions/config.php
-sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' $app_directory/primechain_functions/config.php
+sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcPort'";/g' $app_directory/primechain_functions/config.php
 
 sudo sed -ie 's/DB_HOST_NAME =.*;/DB_HOST_NAME = "'$db_host_name'";/g' $app_directory/primechain_functions/config.php
 sudo sed -ie 's/DB_USER_NAME =.*;/DB_USER_NAME = "'$db_admin_user'";/g' $app_directory/primechain_functions/config.php
@@ -249,7 +249,7 @@ git clone https://github.com/Primechain/hashchain.git
 # Configuring Hashchain
 sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' $webServerActiveDirectory/hashchain/resources.php
 sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' $webServerActiveDirectory/hashchain/resources.php
-sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' $webServerActiveDirectory/hashchain/resources.php
+sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcPort'";/g' $webServerActiveDirectory/hashchain/resources.php
 sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' $webServerActiveDirectory/hashchain/resources.php
 
 ###
@@ -261,18 +261,18 @@ git clone https://github.com/MultiChain/multichain-explorer.git
 cd multichain-explorer
 sudo python setup.py install
 
-sudo bash -c 'cp '$homedir'/multichain-explorer/chain1.example.conf '$homedir'/multichain-explorer/'$chainname'.conf'
+sudo bash -c 'cp '$homedir'/multichain-explorer/chain1.example.conf '$homedir'/multichain-explorer/'$chainName'.conf'
 
-sudo sed -ie 's/MultiChain chain1/'$explorerDisplayName'/g' $homedir/multichain-explorer/$chainname.conf
-sudo sed -ie 's/2750/'$explorerport'/g' $homedir/multichain-explorer/$chainname.conf
-sudo sed -ie 's/chain1/'$chainname'/g' $homedir/multichain-explorer/$chainname.conf
-sudo sed -ie 's/host localhost.*\#/host  localhost 	#/g' $homedir/multichain-explorer/$chainname.conf
-sudo sed -ie 's/host localhost/host 0.0.0.0/g' $homedir/multichain-explorer/$chainname.conf
-sudo sed -ie 's/chain1.explorer.sqlite/'$chainname'.explorer.sqlite/g' $homedir/multichain-explorer/$chainname.conf
+sudo sed -ie 's/MultiChain chain1/'$explorerDisplayName'/g' $homedir/multichain-explorer/$chainName.conf
+sudo sed -ie 's/2750/'$explorerport'/g' $homedir/multichain-explorer/$chainName.conf
+sudo sed -ie 's/chain1/'$chainName'/g' $homedir/multichain-explorer/$chainName.conf
+sudo sed -ie 's/host localhost.*\#/host  localhost 	#/g' $homedir/multichain-explorer/$chainName.conf
+sudo sed -ie 's/host localhost/host 0.0.0.0/g' $homedir/multichain-explorer/$chainName.conf
+sudo sed -ie 's/chain1.explorer.sqlite/'$chainName'.explorer.sqlite/g' $homedir/multichain-explorer/$chainName.conf
 
-su -l $linux_admin_user -c "python -m Mce.abe --config "$homedir"/multichain-explorer/"$chainname".conf --commit-bytes 100000 --no-serve"
+su -l $linux_admin_user -c "python -m Mce.abe --config "$homedir"/multichain-explorer/"$chainName".conf --commit-bytes 100000 --no-serve"
 sleep 5
-su -l $linux_admin_user -c "echo -ne '\n' | nohup python -m Mce.abe --config "$homedir"/multichain-explorer/"$chainname".conf > /dev/null 2>/dev/null &"
+su -l $linux_admin_user -c "echo -ne '\n' | nohup python -m Mce.abe --config "$homedir"/multichain-explorer/"$chainName".conf > /dev/null 2>/dev/null &"
 
 # Restarting Apache to load the changes
 sudo service apache2 restart
